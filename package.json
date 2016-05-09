@@ -1,0 +1,43 @@
+{
+  "name": "redux-merge-reducers",
+  "version": "0.0.1",
+  "description": "A decorator to make your Redux's reducers mergeable.",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kuy/redux-merge-reducers.git"
+  },
+  "homepage": "https://github.com/kuy/redux-merge-reducers",
+  "bugs": "https://github.com/kuy/redux-merge-reducers/issues",
+  "scripts": {
+    "start": "./node_modules/.bin/babel src --out-dir lib --watch",
+    "build": "./node_modules/.bin/babel src --out-dir lib",
+    "clean": "./node_modules/.bin/rimraf lib",
+    "prepublish": "npm run clean && npm run build",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-register --recursive test/index.js"
+  },
+  "authors": [
+    "Yuki Kodama <endflow.net@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "redux",
+    "reducer",
+    "reducers",
+    "merge"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.8.0",
+    "babel-core": "^6.8.0",
+    "babel-plugin-unassert": "^2.1.0",
+    "babel-polyfill": "^6.8.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.8.0",
+    "mocha": "^2.4.5",
+    "power-assert": "^1.4.0",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "rimraf": "^2.5.2"
+  }
+}
