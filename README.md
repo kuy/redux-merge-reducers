@@ -1,4 +1,5 @@
 [![NPM Package][npm_img]][npm_site]
+[![Travis][ci_img]][ci_site]
 [![Dependency Status][david_img]][david_site]
 
 # redux-merge-reducers
@@ -89,5 +90,7 @@ Yuki Kodama / [@kuy](https://twitter.com/kuy)
 
 [npm_img]: https://img.shields.io/npm/v/redux-merge-reducers.svg
 [npm_site]: https://www.npmjs.org/package/redux-merge-reducers
+[ci_img]: https://img.shields.io/travis/kuy/redux-merge-reducers/master.svg?style=flat-square
+[ci_site]: https://travis-ci.org/kuy/redux-merge-reducers
 [david_img]: https://img.shields.io/david/kuy/redux-merge-reducers.svg
 [david_site]: https://david-dm.org/kuy/redux-merge-reducers
