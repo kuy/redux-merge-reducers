@@ -24,46 +24,60 @@ npm install --save redux-merge-reducers
 
 ## Usage
 
-1. Make shared reducer mergeable
-2. Customize it by calling `merge()` method
-3. That's it! :zap:
+1. Make shared reducers mergeable
+2. Merge with the extra reducer
+3. That's it :zap:
 
-Wrap your reducer with `mergeable` function.
+#### Wrap your reducer with `mergeable()` function.
 
 ```es6
 import mergeable from 'redux-merge-reducers';
 
-function baseReducer(state = { ... }, action) {
+function sharedReducer(state = { ... }, action) {
   // ...
 }
 
-export default mergeable(baseReducer);
+export default mergeable(sharedReducer);
 ```
 
-Call `merge()` method with the extra reducer.
+#### Call `merge()` method with the extra reducer.
 
 ```es6
-import baseReducer from '...';
+import sharedReducer from '...';
 
 function extraReducer(state, action) {
   // ...
 }
 
 export default combineReducers({
-  foo, bar, baseReducer.merge(extraReducer)
+  foo, bar, sharedReducer.merge(extraReducer)
 });
 ```
 
-### Notice
+#### Merge is optional
+
+If you want to use shared reducers without customization, you can put mergeable reducers without calling `merge()` method.
+
+```es6
+import sharedReducer from '...'; // this reducer is decorated
+
+export default combineReducers({
+  foo, bar, sharedReducer // without merging
+});
+```
+
+#### Caveat
 
 The extra reducer will be called before the original.
-The original reducer takes the new state which is produced by the extra.
+The shared reducer takes the new state which is produced by the extra.
 
 ## API
 
+redux-merge-reducers exports one function.
+
 ### `mergeable(reducer)`
 
-+ `reducer` *(`function`)* **[required]** :
++ `reducer` *(function)* **[required]** : a reducer function you want to make it mergeable.
 
 ## License
 
