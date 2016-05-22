@@ -16,7 +16,7 @@ describe('mergeable', () => {
 
 describe('mergeable.merge', () => {
   const initial = { foo: 0, bar: false };
-  const extra = (state, action) => {
+  const extraBody = (state, action) => {
     switch (action.type) {
     case 'BAR':
       return { ...state, bar: !state.bar };
@@ -35,29 +35,48 @@ describe('mergeable.merge', () => {
     });
   });
 
-  it("returns merged reducer", () => {
-    const merged = shared.merge(extra);
-    assert(merged !== shared);
-    assert(merged !== extra);
+  context("without initial state", () => {
+    const extra = (state, action) => {
+      return extraBody(state, action);
+    };
 
-    const s0 = merged(undefined, { type: '@@INIT' });
-    assert.deepEqual(s0, { foo: 0, bar: false });
+    it("returns merged reducer", () => {
+      const merged = shared.merge(extra);
+      assert(merged !== shared);
+      assert(merged !== extra);
 
-    const s1 = merged(s0, { type: 'FOO' });
-    assert.deepEqual(s1, { foo: 1, bar: false });
+      const s0 = merged(undefined, { type: '@@INIT' });
+      assert.deepEqual(s0, { foo: 0, bar: false });
 
-    const s2 = merged(s1, { type: 'BAR' });
-    assert.deepEqual(s2, { foo: 1, bar: true });
+      const s1 = merged(s0, { type: 'FOO' });
+      assert.deepEqual(s1, { foo: 1, bar: false });
+
+      const s2 = merged(s1, { type: 'BAR' });
+      assert.deepEqual(s2, { foo: 1, bar: true });
+    });
+
+    it("can be used without merging", () => {
+      const s0 = shared(undefined, { type: '@@INIT' });
+      assert.deepEqual(s0, { foo: 0, bar: false });
+
+      const s1 = shared(s0, { type: 'FOO' });
+      assert.deepEqual(s1, { foo: 1, bar: false });
+
+      const s2 = shared(s1, { type: 'BAR' });
+      assert.deepEqual(s2, { foo: 1, bar: false });
+    });
   });
 
-  it("can be used without merging", () => {
-    const s0 = shared(undefined, { type: '@@INIT' });
-    assert.deepEqual(s0, { foo: 0, bar: false });
+  context("with initial state", () => {
+    const extraInitial = { lang: 'ja', bar: true };
+    const extra = (state = extraInitial, action) => {
+      return extraBody(state, action);
+    };
 
-    const s1 = shared(s0, { type: 'FOO' });
-    assert.deepEqual(s1, { foo: 1, bar: false });
-
-    const s2 = shared(s1, { type: 'BAR' });
-    assert.deepEqual(s2, { foo: 1, bar: false });
+    it("merges inital state of extra reducer", () => {
+      const merged = shared.merge(extra);
+      const s = merged(undefined, { type: '@@INIT' });
+      assert.deepEqual(s, { foo: 0, bar: true, lang: 'ja' });
+    });
   });
 });
