@@ -46,7 +46,7 @@ export default mergeable(sharedReducer);
 ```es6
 import sharedReducer from '...';
 
-function extraReducer(state, action) {
+function extraReducer(state = {...}, action) {
   // ...
 }
 
@@ -55,7 +55,7 @@ export default combineReducers({
 });
 ```
 
-#### Merge is optional
+#### Without merging
 
 If you want to use shared reducers without customization, you can put mergeable reducers without calling `merge()` method.
 
@@ -66,6 +66,24 @@ export default combineReducers({
   foo, bar, sharedReducer // without merging
 });
 ```
+
+#### Merge initial state
+
+The initial state given by the extra reducer should be merged with the shared one.
+
+```es6
+function sharedReducer(state = { a: 0, b: true }, action) {
+  // ...
+}
+
+function extraReducer(state = { b: false, c: 'hello' }, action) {
+  // ...
+}
+
+// => { a: 0, b: false, c: 'hello' }
+```
+
+Be careful that the extra reducer's initial state has a priority over the shared one.
 
 #### Caveat
 
