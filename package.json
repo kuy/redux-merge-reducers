@@ -1,6 +1,6 @@
 {
   "name": "redux-merge-reducers",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A decorator to make your Redux's reducers mergeable.",
   "main": "./lib/index.js",
   "repository": {
