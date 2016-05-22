@@ -51,7 +51,7 @@ function extraReducer(state, action) {
 }
 
 export default combineReducers({
-  foo, bar, sharedReducer.merge(extraReducer)
+  foo, bar, sharedreducer: sharedReducer.merge(extraReducer)
 });
 ```
 
