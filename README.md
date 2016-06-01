@@ -17,6 +17,10 @@ My solution: **Merge**, not **Combine**
 `combineReducers` function always join them horizontally, so it can't be used for my purpose.
 I needed to chain reducers and make a single reducer.
 
+## Difference from [reduce-reducers](https://github.com/acdlite/reduce-reducers)
+
+reduce-reducers doesn't consider the [initial state](#merge-initial-state) of additional reducers.
+
 ## Installation
 
 ```
@@ -29,7 +33,7 @@ npm install --save redux-merge-reducers
 2. Merge with the extra reducer
 3. That's it :zap:
 
-#### Wrap your reducer with `mergeable()` function.
+#### 1. Wrap your reducer with `mergeable()` function.
 
 ```es6
 import mergeable from 'redux-merge-reducers';
@@ -41,7 +45,7 @@ function sharedReducer(state = { ... }, action) {
 export default mergeable(sharedReducer);
 ```
 
-#### Call `merge()` method with the extra reducer.
+#### 2. Call `merge()` method with the extra reducer.
 
 ```es6
 import sharedReducer from '...';
@@ -55,7 +59,9 @@ export default combineReducers({
 });
 ```
 
-#### Without merging
+### Tips
+
+#### Use original reducer (without merging)
 
 If you want to use shared reducers without customization, you can put mergeable reducers without calling `merge()` method.
 
