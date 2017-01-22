@@ -1,6 +1,7 @@
 [![NPM Package][npm_img]][npm_site]
 [![Travis][ci_img]][ci_site]
 [![Dependency Status][david_img]][david_site]
+[![Greenkeeper badge](https://badges.greenkeeper.io/kuy/redux-merge-reducers.svg)](https://greenkeeper.io/)
 
 # redux-merge-reducers
 
