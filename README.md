@@ -4,6 +4,8 @@
 
 # redux-merge-reducers
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kuy/redux-merge-reducers.svg)](https://greenkeeper.io/)
+
 A decorator to make your Redux's reducers mergeable.
 
 ## For what?
