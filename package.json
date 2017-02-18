@@ -39,6 +39,6 @@
     "power-assert": "^1.4.0",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.6.0"
   }
 }
