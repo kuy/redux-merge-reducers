@@ -35,7 +35,7 @@
     "babel-preset-power-assert": "^1.0.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-register": "^6.8.0",
-    "mocha": "^4.0.0",
+    "mocha": "^6.0.2",
     "power-assert": "^1.4.0",
     "redux": "^3.5.2",
     "redux-logger": "^3.0.0",
